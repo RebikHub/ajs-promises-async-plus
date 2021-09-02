@@ -1,31 +1,31 @@
 import read from '../reader';
-import readError from '../__mocks__/reader'
+import responseData from '../__mocks__/response';
 
-jest.mock('../__mocks__/reader');
+jest.mock('../__mocks__/response');
 
 beforeEach(() => {
   jest.resetAllMocks();
 });
 
-test('test resolve read()', async () => {
+test('test reject read()', async () => {
+  responseData.mockReturnValue('non data!!!');
   const response = await read();
-  expect(response).toEqual('Информация об уровне временно недоступна');
+  expect(response).toThrow('non data!!!');
 });
 
-test('test reject read()', () => {
-  readError.mockReturnValue('non data!!!');
-  const response = readError();
-  expect(response).toEqual('non data!!!');
-});
-
-it('works with promises', () => {
-  expect.assertions(1);
-  return user.getUserName(4).then(data => expect(data).toEqual('Mark'));
-});
+// it('works with promises', () => {
+//   expect.assertions(1);
+//   return user.getUserName(4).then(data => expect(data).toEqual('Mark'));
+// });
 
 // async/await can be used.
-it('works with async/await', async () => {
-  expect.assertions(1);
-  const data = await user.getUserName(4);
-  expect(data).toEqual('Mark');
-});
+// it('test reject read()', async () => {
+//   expect.assertions(1);
+//   const data = await readError();
+//   expect(data).toEqual('non data!!!');
+// });
+// it('test reject read()', async () => {
+//   expect.assertions(1);
+//   const data = await readError();
+//   expect(data).toEqual('non data!!!');
+// });
