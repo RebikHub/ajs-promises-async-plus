@@ -3,7 +3,7 @@ import responseData from './__mocks__/response';
 export default function read() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const data = responseData('error');
+      const data = responseData();
       // eslint-disable-next-line max-len
       // const data = '{"id":9,"created":1546300800,"userInfo":{"id":1,"name":"Hitman","level":10,"points":2000}}';
       ((input) => {
@@ -14,7 +14,7 @@ export default function read() {
         }
         resolve(buffer);
       })(data);
+      reject(new Error('non data!!!'));
     }, 1000);
-    reject();
   });
 }
