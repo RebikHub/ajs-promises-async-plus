@@ -1,23 +1,12 @@
-import read from '../reader';
-import responseData from '../__mocks__/response';
+import GameSavingLoader from '../GameSavingLoader';
 
-jest.mock('../__mocks__/response');
-
-beforeEach(() => {
-  jest.resetAllMocks();
-});
-
-test('test reject read()', async () => {
-  responseData.mockReturnValue('error');
-  try {
-    await read();
-  } catch (error) {
-    expect(error).toEqual('non data!!!');
-  }
-});
-
-it('test resolve read()', async () => {
-  responseData.mockReturnValue('yes');
-  const data = await read();
-  expect(data).not.toEqual('non data!!!');
+test('test other func', async () => {
+  const data = await GameSavingLoader.load();
+  expect(data).toEqual({
+    id: 9,
+    created: 1546300800,
+    userInfo: {
+      id: 1, name: 'Hitman', level: 10, points: 2000,
+    },
+  });
 });
