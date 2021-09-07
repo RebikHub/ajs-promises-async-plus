@@ -6,6 +6,7 @@ export default class GameSavingLoader {
   static async load() {
     const data = await read();
     const result = await json(data);
-    return new GameSaving(result);
+    const objectData = JSON.parse(result);
+    return new GameSaving(objectData);
   }
 }

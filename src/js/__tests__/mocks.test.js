@@ -5,7 +5,7 @@ import GameSavingLoader from '../GameSavingLoader';
 jest.mock('../reader');
 jest.mock('../parser');
 
-beforeEach(() => jest.resetAllMocks());
+afterEach(() => jest.resetAllMocks());
 
 test('test reject read()', async () => {
   read.mockRejectedValue('error');
